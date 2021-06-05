@@ -36,6 +36,8 @@ function runGame(gameType) {
         displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -79,8 +81,9 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];        // It will return the sum of operand 1 and 2, and the game type (addition)
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
-    }
-    else {
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`
     }
@@ -113,7 +116,13 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
+
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1: operand2;
+    // This is a shortened if statement (ternary operator). It says if (operand 1 > operand2) is true,
+    // return operand 1, or else return operand 2
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2: operand1;
+    document.getElementById('operator').textContent = "-";
 
 }
 
