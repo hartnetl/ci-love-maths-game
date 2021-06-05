@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // which will be stored in  that variable button on each iteration.  
     for (let button of buttons){
         button.addEventListener("click", function() {
-            if (this.getAttribute("date-type") === "submit") {
-                alert("You clicked Submit!");
+            if (this.getAttribute("data-type") === "submit") {
+                checkAnswer(); 
             } else {
                 let gameType = this.getAttribute("data-type");
-                runGame(gameType)
+                runGame(gameType);
             }
         })
     }
@@ -41,12 +41,42 @@ function runGame(gameType) {
     }
 }
 
-function checkAnswer() {
+/**
+ * Checks the answer against the first element in the 
+ * returned calculateCorrectAnswer array
+ */
 
+function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);     // We use .value here because it is a user input value
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("Hey! You got it right! :D ");
+    } else {
+        alert(`awww..... You answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);    // This will restart the gametype returned, which is of the same type
 }
+
+/**
+ * Get the operands (the numbers) and the operator (plus, minus etc)
+ * directly from the dom, and returns the correct answer.
+ */
 
 function calculateCorrectAnswer() {
 
+    let operand1 = parseInt(document.getElementById('operand1').innerText); // Gets value from DOM and changes them to an integer
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById('operator').innerText;
+
+    if (operator === "+") {                               // If the operator is a plus sign
+        return [operand1 + operand2, "addition"];        // It will return the sum of operand 1 and 2, and the game type (addition)
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`
+    }
 }
 
 function incrementScore() {
@@ -58,7 +88,7 @@ function incrementWrongAnswer() {
 }
 
 function displayAdditionQuestion(operand1, operand2) {
-    
+
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "+";
