@@ -108,7 +108,7 @@ body {
     height: 100px;
     font-size: 3.2rem;
     margin: 0 30px;
-    transition: all 0.5s;       /* Check these things */
+    transition: all 0.5s;       /* Slows down the colour change when clicked */
 }
 /* :before and :after inserts content before/after the targetted element */ 
 .btn--big::after{

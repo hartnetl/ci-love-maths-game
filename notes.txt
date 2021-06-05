@@ -1,0 +1,22 @@
+### Just some helpful notes to take as we go along
+
+#
+In CSS " transition: all 0.5s; " changes the speed of the changes you're making.
+This is used here when the buttons are clicked, to slow down the colour change to make it smoother.
+
+#
+::before and ::after pseudo selectors insert content before/after the targetted element.
+In this website it makes the text appear below the buttons for the maths signs.
+
+#
+Each function should  ideally have only one main task.   
+We want them to be fairly atomic, this is something  known as the single responsibility principle.  
+Where we have a collection of smaller  functions each with one main job,  
+rather than one huge function handling everything.
+
+#
+Always have a clear idea of what you want your site/app to look like - have good wireframes.
+They are essential for structure and design. 
+
+The same is true for your functions - Before you begin to code your JS you need to work out exactly what functions you need, 
+and what they need to do.
